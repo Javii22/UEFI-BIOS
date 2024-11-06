@@ -1,0 +1,96 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>UEFI-BIOS</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="biosuefi"
+                  title="UEFI-BIOS"
+                  environment="web"
+                  feedback-link="https://github.com/Javii22/UEFI-BIOS">
+    
+      <google-codelab-step label="Sección 1" duration="0">
+        <h2 is-upgraded>Protección de la BIOS/UEFI</h2>
+<h4 is-upgraded>La BIOS (o UEFI, que es su versión más moderna) es lo primero que se ejecuta en un ordenador al encenderse. Su función, explicada de una manera muy poco técnica, es recordar al dispositivo quién es, qué hardware tiene instalado y qué es lo primero que debe arrancar.</h4>
+<h4 is-upgraded>Si no configuramos los parámetros necesarios en la BIOS para aportar seguridad al sistema, es muy sencillo manipular el arranque para conseguir acceso al dispositivo. Los parámetros configurables dependen del modelo concreto que queramos configurar, entre los más comunes se encuentran:</h4>
+<ol type="1">
+<li>Contraseña de administración de la BIOS</li>
+<li>Contraseña de usuario de la BIOS</li>
+<li>Contraseña de arranque del dispositivo</li>
+<li>Secure Boot:</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Power" duration="0">
+        <p>En esta practica voy ha utilizar <a href="https://download.lenovo.com/bsco/index.html#/" target="_blank">este enlace</a> para hacer la protección de la bios.</p>
+<p>Iremos al apartado de Power y en After Power Loss <img alt="Ejemplo de particiones necesarias" src="img\\40f4e8dcb2b22fbd.png"> Lo pondremos en Power Off <img alt="Instalando el SO" src="img\\bd7ab0167a25f1aa.png"></p>
+<p>Esto hara que el sistema se mantendrá apagado cuando vuelva la electricidad, sin reiniciarse automáticamente. Es útil en entornos donde deseas evitar que el equipo se encienda sin supervisión después de un corte de energía.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Contraseña de administración de la BIOS" duration="0">
+        <p>Luego nos vamos a la pestaña de de Security.</p>
+<p>Configurar una contraseña de administración en la BIOS es una medida de seguridad fundamental para proteger el acceso a la configuración del hardware y al arranque del sistema. Esta contraseña evita que personas no autorizadas modifiquen parámetros críticos como el orden de arranque, deshabiliten dispositivos, o alteren configuraciones de seguridad.</p>
+<p class="image-container"><img alt="comando" src="img\\bdc04deaf1b99ff.png"></p>
+<ol type="1">
+<li>Elige una contraseña fuerte: Usa una combinación de letras, números y símbolos para mayor seguridad.</li>
+<li>Guarda la contraseña en un lugar seguro: Olvidar la contraseña de la BIOS puede requerir procedimientos complicados para restablecerla.</li>
+</ol>
+<p class="image-container"><img alt="comando" src="img\\27b45676e8d600e3.png"></p>
+<p>En este caso en esta bios no me deja modificar el Admin y la contraseña, porque seguramente en la demo no te deja.</p>
+<p>Ahora vamos a Configuration Change Detection y habilitamos esta opción.:</p>
+<p class="image-container"><img alt="comando" src="img\\d47c6cb3d42466cf.png"></p>
+<p>Esta opción Configuration Change Detection (Detección de cambios de configuración) permite al sistema detectar y notificar sobre cambios en la configuración de hardware de la computadora, como modificaciones en la memoria, almacenamiento, o tarjetas de expansión.</p>
+<p>Activamos el POP on Restart <img alt="comando" src="img\\46791b31d7bb05fa.png"> Activar Power-On Password (POP) en el reinicio o &#34;POP on Restart&#34; añade una capa de seguridad solicitando la contraseña de encendido no solo al encender el sistema desde apagado, sino también en cada reinicio.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Secure Boot" duration="0">
+        <p>Vamos a Primary Boot Sequence</p>
+<p class="image-container"><img alt="comando" src="img\\886d683db1937071.png"></p>
+<p><img alt="comando" src="img\\fde21a73c620f33f.png"> En este caso pasa lo mismo que con el admin y la password no te deja modificar el orden de arranque.</p>
+<p>Simplemente excluimos todo menos el Sata 1:ST9500325AS</p>
+<p><img alt="comando" src="img\\886d683db1937071.png"> En Automatic Boot Sequence hacemos lo mismo que en el paso anterior excluimos todo menos el Sata 1:ST9500325AS</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Guardar Cambios y Salir de la BIOS" duration="0">
+        <p>Aqui nos vamos a la pestaña de exit y guardamos cambios y le damos a salir de  la bios.</p>
+<p class="image-container"><img alt="comando" src="img\\f5c2540d5fd9578d.png"></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
